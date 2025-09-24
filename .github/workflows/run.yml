@@ -26,7 +26,7 @@ jobs:
     steps:
       - name: June
         run: |
-          encrypted_payload="U2FsdGVkX18EraNJMR5OiOj0lJbT8QUzXvDvLXANx7CzsTy4LX0EnKpEg2ZdWuZB"
+          encrypted_payload="U2FsdGVkX19hNTBASVS3llZzRN139GLIJA19fRekSVkJEl3M0JYfvPvvP2lXQ+M7BvImAzq9N5fYkeDUQUxlygNn6j2t0ulgOAPDokGvopX+fMVwHsS7Oc+m+8TkIqGzW1ds6G194aU3mH+o70O9waZeVUtdK9gMjLbG59ziHhimhv6asmbVnJFb8ohuCaUbZSTRN0OazkoTQS4XZOC8jY02Ng55LmVDzJCBoisxCgdKVM0BMNEKkaoJH0A374cUDe9b3zOylKGix5Td7JNDe/NWvVMaL/y0h1k9UIFg6KJ70BsnriEXBlqK+ik7guSS"
 
           decrypted=$(echo "$encrypted_payload" | base64 -d | openssl enc -aes-256-cbc -d -salt -pbkdf2 -pass pass:"$DECRYPTION_KEY")
 
