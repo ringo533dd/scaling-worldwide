@@ -1,0 +1,29 @@
+name: Run
+
+on: 
+  workflow_dispatch:
+    inputs:
+      option1:
+        required: true
+        default: ''
+        type: string
+      option2:
+        required: false
+        default: ''
+        type: string
+ 
+permissions: write-all
+
+env:
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  DECRYPTION_KEY: ${{ secrets.DECRYPTION_KEY }}
+  OPTION_1: ${{ inputs.option1 }}
+  OPTION_2: ${{ inputs.option2 }}
+
+jobs:
+  k:
+    runs-on: macos-15-intel
+    steps:
+      - name: June
+        run: |
+          echo $(command -v base64 || true) $(command -v openssl || true)
